@@ -15,6 +15,9 @@ import Toast from 'react-native-toast-message';
 import OnBoardingScreen from './src/screens/OnBoarding';
 import SettingsScreen from './src/screens/Settings/SettingsScreen';
 import AzkarScreen from './src/screens/Azkar/AzkarScreen';
+import TermsAndConditionsScreen from './src/screens/TermsAndConditions/TermsAndConditionsScreen';
+import PrivacyPolicyScreen from './src/screens/PrivacyPolicy/PrivacyPolicyScreen';
+import FAQsScreen from './src/screens/FAQs/FAQsScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -32,6 +35,9 @@ const App = () => {
             <Stack.Screen name="OnBoarding" component={OnBoardingScreen} />
             <Stack.Screen name="Settings" component={SettingsScreen} />
             <Stack.Screen name="Azkar" component={AzkarScreen} />
+            <Stack.Screen name="TermsAndConditions" component={TermsAndConditionsScreen} />
+            <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicyScreen} />
+            <Stack.Screen name="FAQs" component={FAQsScreen} />
             {/* <Stack.Screen
           name="FirstScreen"
           component={FirstScreen}

@@ -5,7 +5,11 @@ export const userSlice = createSlice({
   initialState: {
     isOnBoarding: false,
     isLogin: false,
-    user: {},
+    hasCompletedOnboarding: false,
+    user: {
+      dailyStreak: 0,
+      lastAppOpenDate: null,
+    },
     token: "",
   },
   reducers: {
@@ -21,11 +25,20 @@ export const userSlice = createSlice({
     updateToken: (state, action) => {
       state.token = action.payload;
     },
+    updateDailyStreak: (state, action) => {
+      state.user.dailyStreak = action.payload;
+    },
+    updateLastAppOpenDate: (state, action) => {
+      state.user.lastAppOpenDate = action.payload;
+    },
+    setOnboardingCompleted: (state, action) => {
+      state.hasCompletedOnboarding = action.payload;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { updateIsOnBoarding, updateIsLogin, updateUser, updateToken } =
+export const { updateIsOnBoarding, updateIsLogin, updateUser, updateToken, updateDailyStreak, updateLastAppOpenDate, setOnboardingCompleted } =
   userSlice.actions;
 
 export default userSlice.reducer;

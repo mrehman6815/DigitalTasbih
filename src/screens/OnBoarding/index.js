@@ -9,7 +9,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import {useDispatch} from 'react-redux';
-import {updateIsOnBoarding} from '../../Store/userSlice';
+import {updateIsOnBoarding, setOnboardingCompleted} from '../../Store/userSlice';
 const hand = require('../../images/hand.png');
 const prayer = require('../../images/prayer.png');
 const tasbih = require('../../images/tasbih.png');
@@ -39,6 +39,7 @@ const OnBoardingScreen = ({navigation}) => {
   const dispatch = useDispatch();
   const handleContinue = () => {
     dispatch(updateIsOnBoarding(true));
+    dispatch(setOnboardingCompleted(true));
     navigation.replace('Name');
   };
 

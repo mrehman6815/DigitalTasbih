@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import Toast from 'react-native-toast-message';
 import {useDispatch} from 'react-redux';
-import {updateUser} from '../../Store/userSlice';
+import {updateUser, setOnboardingCompleted} from '../../Store/userSlice';
 
 const NameScreen = ({navigation}) => {
   const [selectedAvatar, setSelectedAvatar] = useState(null);
@@ -47,6 +47,7 @@ const NameScreen = ({navigation}) => {
       return;
     }
     dispatch(updateUser({name, avatar: selectedAvatar}));
+    dispatch(setOnboardingCompleted(true));
     navigation.navigate('Home', {name, avatar: selectedAvatar});
   };
 

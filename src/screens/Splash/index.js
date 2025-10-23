@@ -6,7 +6,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {updateIsOnBoarding} from '../../Store/userSlice';
 
 const SplashScreen = ({navigation}) => {
-  const {user, isOnBoarding} = useSelector(state => state.userReducer);
+  const {user, isOnBoarding, hasCompletedOnboarding} = useSelector(state => state.userReducer);
   // Create animated values
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const scaleAnim = useRef(new Animated.Value(0.8)).current;
@@ -31,14 +31,15 @@ const SplashScreen = ({navigation}) => {
     dispatch(updateIsOnBoarding(false));
     // Navigate after 3 seconds
     setTimeout(() => {
-      if (!isOnBoarding) {
-        navigation.replace('OnBoarding');
-        return;
-      } else if (user?.name) {
-        navigation.navigate('Home');
-        return;
-      } else {
+      if (hasCompletedOnboarding && user?.name) {
+        // User has completed onboarding and has a name - go directly to Home
+        navigation.replace('Home');
+      } else if (hasCompletedOnboarding && !user?.name) {
+        // User completed onboarding but no name - go to Name screen
         navigation.replace('Name');
+      } else {
+        // First time user - go to OnBoarding
+        navigation.replace('OnBoarding');
       }
     }, 3000);
   }, []);

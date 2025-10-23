@@ -110,7 +110,7 @@ export const tasbihSlice = createSlice({
         const tasbih = state.tasbihs.find(t => t.id === state.currentTasbih!.id);
         if (tasbih) {
           tasbih.counts += state.currentCount;
-          tasbih.lastTimeAndDate = new Date().toLocaleString();
+          tasbih.lastTimeAndDate = new Date().toISOString();
           
           // Update daily count and streak
           const today = new Date().toDateString();
@@ -167,6 +167,65 @@ export const tasbihSlice = createSlice({
     setCurrentCount: (state, action) => {
       state.currentCount = action.payload;
     },
+    resetAllData: (state) => {
+      // Reset to initial state with predefined tasbihs only
+      state.tasbihs = [
+        {
+          id: 'subhanallah',
+          name: 'Subhanallah',
+          isPredefined: true,
+          counts: 0,
+          streak: 0,
+          lastTimeAndDate: null,
+          dailyCount: 0,
+          lastDate: null,
+        },
+        {
+          id: 'alhamdulillah',
+          name: 'Alhamdulillah',
+          isPredefined: true,
+          counts: 0,
+          streak: 0,
+          lastTimeAndDate: null,
+          dailyCount: 0,
+          lastDate: null,
+        },
+        {
+          id: 'allah-hu-akbar',
+          name: 'Allahu Akbar',
+          isPredefined: true,
+          counts: 0,
+          streak: 0,
+          lastTimeAndDate: null,
+          dailyCount: 0,
+          lastDate: null,
+        },
+        {
+          id: 'la-ilaha-illallah',
+          name: 'La ilaha illallah',
+          isPredefined: true,
+          counts: 0,
+          streak: 0,
+          lastTimeAndDate: null,
+          dailyCount: 0,
+          lastDate: null,
+        },
+        {
+          id: 'astaghfirullah',
+          name: 'Astaghfirullah',
+          isPredefined: true,
+          counts: 0,
+          streak: 0,
+          lastTimeAndDate: null,
+          dailyCount: 0,
+          lastDate: null,
+        },
+      ];
+      state.currentTasbih = null;
+      state.isCounting = false;
+      state.currentCount = 0;
+      state.lastAppOpenDate = null;
+    },
   },
 });
 
@@ -179,6 +238,7 @@ export const {
   resetTasbih,
   checkDailyStreak,
   setCurrentCount,
+  resetAllData,
 } = tasbihSlice.actions;
 
 export default tasbihSlice.reducer; 
